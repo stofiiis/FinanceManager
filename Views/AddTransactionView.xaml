@@ -1,0 +1,86 @@
+<UserControl x:Class="PersonalFinanceManager.AddTransactionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:PersonalFinanceManager"
+             xmlns:viewmodels="clr-namespace:PersonalFinanceManager.ViewModels"
+             xmlns:models="clr-namespace:PersonalFinanceManager.Models"
+             mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <viewmodels:AddTransactionViewModel />
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="TransactionTypeValues" MethodName="GetValues"
+                            ObjectType="{x:Type System:Enum}" xmlns:System="clr-namespace:System;assembly=mscorlib">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="models:TransactionType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="#F5F5F5" CornerRadius="5" Padding="20" Margin="0,0,10,0">
+            <StackPanel>
+                <TextBlock Text="Add New Transaction" FontSize="18" FontWeight="Bold" Margin="0,0,0,20"/>
+
+                <Label Content="Amount" FontWeight="SemiBold"/>
+                <TextBox Text="{Binding Amount, StringFormat='{}{0:N2}'}" Margin="0,0,0,15"/>
+
+                <Label Content="Transaction Type" FontWeight="SemiBold"/>
+                <ComboBox ItemsSource="{Binding Source={StaticResource TransactionTypeValues}}"
+                          SelectedItem="{Binding TransactionType}" Margin="0,0,0,15"/>
+
+                <Label Content="Category" FontWeight="SemiBold"/>
+                <ComboBox ItemsSource="{Binding PredefinedCategories}" 
+                          SelectedItem="{Binding Category}"
+                          IsEditable="True" Text="{Binding Category}" Margin="0,0,0,15"/>
+
+                <Label Content="Date" FontWeight="SemiBold"/>
+                <DatePicker SelectedDate="{Binding Date}" Margin="0,0,0,15"/>
+
+                <Label Content="Note (Optional)" FontWeight="SemiBold"/>
+                <TextBox Text="{Binding Note}" TextWrapping="Wrap" Height="60" Margin="0,0,0,20"/>
+
+                <Button Content="Save Transaction" Command="{Binding SaveCommand}" 
+                        Background="#4CAF50" Foreground="White" FontWeight="SemiBold"
+                        Height="40" BorderThickness="0"/>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Column="1" Background="#E8F5E9" CornerRadius="5" Padding="20" Margin="10,0,0,0">
+            <StackPanel>
+                <TextBlock Text="Transaction Tips" FontSize="18" FontWeight="Bold" Margin="0,0,0,20"/>
+
+                <TextBlock TextWrapping="Wrap" Margin="0,0,0,10">
+                    <Run FontWeight="SemiBold">Income:</Run> Record all sources of income such as salary, freelance work, investments, etc.
+                </TextBlock>
+
+                <TextBlock TextWrapping="Wrap" Margin="0,0,0,10">
+                    <Run FontWeight="SemiBold">Expenses:</Run> Categorize your expenses to better understand your spending habits.
+                </TextBlock>
+
+                <TextBlock TextWrapping="Wrap" Margin="0,0,0,10">
+                    <Run FontWeight="SemiBold">Categories:</Run> Use consistent categories for easier reporting and analysis.
+                </TextBlock>
+
+                <TextBlock TextWrapping="Wrap" Margin="0,0,0,10">
+                    <Run FontWeight="SemiBold">Notes:</Run> Add details to help you remember what the transaction was for.
+                </TextBlock>
+
+                <Border Background="White" CornerRadius="5" Padding="15" Margin="0,20,0,0">
+                    <TextBlock TextWrapping="Wrap" FontStyle="Italic">
+                        Regularly tracking your transactions will help you maintain better control over your finances and make informed financial decisions.
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
