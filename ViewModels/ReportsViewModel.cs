@@ -17,7 +17,7 @@ namespace PersonalFinanceManager.ViewModels
         private decimal _income;
         private decimal _expenses;
         private decimal _balance;
-        private Dictionary<string, decimal> _categoryBreakdown = new Dictionary<string, decimal>();
+        private Dictionary<string, decimal> _categoryBreakdown;
         private DateTime _startDate;
         private DateTime _endDate;
 
@@ -147,6 +147,14 @@ namespace PersonalFinanceManager.ViewModels
                 System.Windows.MessageBox.Show($"Error generating report: {ex.Message}",
                     "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
             }
+        }
+
+        public double GetPercentage(decimal value)
+        {
+            if (Expenses <= 0)
+                return 0;
+
+            return (double)(value / Expenses * 100);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -7,125 +7,118 @@
              xmlns:viewmodels="clr-namespace:PersonalFinanceManager.ViewModels"
              mc:Ignorable="d">
 
-    <UserControl.DataContext>
-        <viewmodels:ReportsViewModel />
-    </UserControl.DataContext>
+	<UserControl.DataContext>
+		<viewmodels:ReportsViewModel />
+	</UserControl.DataContext>
 
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+	<Grid Margin="10">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
 
-        <!-- Report Controls -->
-        <Grid Grid.Row="0" Margin="0,0,0,15">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
+		<!-- Report Controls -->
+		<Grid Grid.Row="0" Margin="0,0,0,15">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="0" Text="Year:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-            <ComboBox Grid.Column="1" ItemsSource="{Binding Years}" SelectedItem="{Binding SelectedYear}" Width="100"/>
+			<TextBlock Grid.Column="0" Text="Year:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+			<ComboBox Grid.Column="1" ItemsSource="{Binding Years}" SelectedItem="{Binding SelectedYear}" Width="100"/>
 
-            <TextBlock Grid.Column="2" Text="Month:" VerticalAlignment="Center" Margin="15,0,5,0"/>
-            <ComboBox Grid.Column="3" ItemsSource="{Binding Months}" SelectedItem="{Binding SelectedMonth}" Width="100"/>
+			<TextBlock Grid.Column="2" Text="Month:" VerticalAlignment="Center" Margin="15,0,5,0"/>
+			<ComboBox Grid.Column="3" ItemsSource="{Binding Months}" SelectedItem="{Binding SelectedMonth}" Width="100"/>
 
-            <Button Grid.Column="5" Content="Generate Report" Command="{Binding GenerateReportCommand}" Width="120"/>
-        </Grid>
+			<Button Grid.Column="5" Content="Generate Report" Command="{Binding GenerateReportCommand}" Width="120"/>
+		</Grid>
 
-        <!-- Monthly Summary -->
-        <Grid Grid.Row="1" Margin="0,0,0,15">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+		<!-- Monthly Summary -->
+		<Grid Grid.Row="1" Margin="0,0,0,15">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
 
-            <!-- Income Card -->
-            <Border Grid.Column="0" Background="#E8F5E9" CornerRadius="5" Margin="5" Padding="15">
-                <StackPanel>
-                    <TextBlock Text="Income" FontWeight="SemiBold"/>
-                    <TextBlock Text="{Binding Income, StringFormat='{}{0:C}'}" 
+			<!-- Income Card -->
+			<Border Grid.Column="0" Background="#E8F5E9" CornerRadius="5" Margin="5" Padding="15">
+				<StackPanel>
+					<TextBlock Text="Income" FontWeight="SemiBold"/>
+					<TextBlock Text="{Binding Income, StringFormat='{}{0:C}'}"
                                FontSize="24" FontWeight="Bold" Foreground="#2E7D32"/>
-                </StackPanel>
-            </Border>
+				</StackPanel>
+			</Border>
 
-            <!-- Expenses Card -->
-            <Border Grid.Column="1" Background="#FFEBEE" CornerRadius="5" Margin="5" Padding="15">
-                <StackPanel>
-                    <TextBlock Text="Expenses" FontWeight="SemiBold"/>
-                    <TextBlock Text="{Binding Expenses, StringFormat='{}{0:C}'}" 
+			<!-- Expenses Card -->
+			<Border Grid.Column="1" Background="#FFEBEE" CornerRadius="5" Margin="5" Padding="15">
+				<StackPanel>
+					<TextBlock Text="Expenses" FontWeight="SemiBold"/>
+					<TextBlock Text="{Binding Expenses, StringFormat='{}{0:C}'}"
                                FontSize="24" FontWeight="Bold" Foreground="#C62828"/>
-                </StackPanel>
-            </Border>
+				</StackPanel>
+			</Border>
 
-            <!-- Balance Card -->
-            <Border Grid.Column="2" Background="#E3F2FD" CornerRadius="5" Margin="5" Padding="15">
-                <StackPanel>
-                    <TextBlock Text="Balance" FontWeight="SemiBold"/>
-                    <TextBlock Text="{Binding Balance, StringFormat='{}{0:C}'}" 
+			<!-- Balance Card -->
+			<Border Grid.Column="2" Background="#E3F2FD" CornerRadius="5" Margin="5" Padding="15">
+				<StackPanel>
+					<TextBlock Text="Balance" FontWeight="SemiBold"/>
+					<TextBlock Text="{Binding Balance, StringFormat='{}{0:C}'}"
                                FontSize="24" FontWeight="Bold" Foreground="#1565C0"/>
-                </StackPanel>
-            </Border>
-        </Grid>
+				</StackPanel>
+			</Border>
+		</Grid>
 
-        <!-- Category Breakdown -->
-        <Grid Grid.Row="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+		<!-- Category Breakdown -->
+		<Grid Grid.Row="2">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Text="Expense Categories Breakdown" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+			<TextBlock Grid.Row="0" Text="Expense Categories Breakdown" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
 
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{Binding CategoryBreakdown}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="0,5">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
+			<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+				<ItemsControl ItemsSource="{Binding CategoryBreakdown}">
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<Grid Margin="0,5">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="Auto"/>
+								</Grid.ColumnDefinitions>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+								</Grid.RowDefinitions>
 
-                                <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Key}" FontWeight="SemiBold"/>
-                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Value, StringFormat='{}{0:C}'}" 
+								<TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Key}" FontWeight="SemiBold"/>
+								<TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Value, StringFormat='{}{0:C}'}"
                                            FontWeight="SemiBold" HorizontalAlignment="Right"/>
 
-                                <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Margin="0,5,0,10">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <Border Background="#E0E0E0" CornerRadius="2" Height="10">
-                                        <Border HorizontalAlignment="Left" Background="#F44336" CornerRadius="2" Height="10">
-                                            <Border.Width>
-                                                <MultiBinding Converter="{StaticResource PercentageConverter}">
-                                                    <Binding Path="Value"/>
-                                                    <Binding Path="DataContext.Expenses" RelativeSource="{RelativeSource AncestorType=ItemsControl}"/>
-                                                </MultiBinding>
-                                            </Border.Width>
-                                        </Border>
-                                    </Border>
-                                </Grid>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
-        </Grid>
-    </Grid>
-
-    <UserControl.Resources>
-        <local:PercentageConverter x:Key="PercentageConverter"/>
-    </UserControl.Resources>
+								<Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Margin="0,5,0,10">
+									<Border Background="#E0E0E0" CornerRadius="2" Height="10">
+										<Border x:Name="ProgressBar" HorizontalAlignment="Left" Background="#F44336" CornerRadius="2" Height="10"/>
+									</Border>
+								</Grid>
+							</Grid>
+							<DataTemplate.Triggers>
+								<DataTrigger Binding="{Binding DataContext.Expenses, RelativeSource={RelativeSource AncestorType=ItemsControl}}" Value="0">
+									<Setter TargetName="ProgressBar" Property="Width" Value="0"/>
+								</DataTrigger>
+								<DataTrigger Binding="{Binding DataContext.Expenses, RelativeSource={RelativeSource AncestorType=ItemsControl}}" Value="{x:Null}">
+									<Setter TargetName="ProgressBar" Property="Width" Value="0"/>
+								</DataTrigger>
+							</DataTemplate.Triggers>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</ScrollViewer>
+		</Grid>
+	</Grid>
 </UserControl>
