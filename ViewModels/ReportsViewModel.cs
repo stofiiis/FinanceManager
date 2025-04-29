@@ -17,7 +17,7 @@ namespace PersonalFinanceManager.ViewModels
         private decimal _income;
         private decimal _expenses;
         private decimal _balance;
-        private Dictionary<string, decimal> _categoryBreakdown;
+        private Dictionary<string, decimal> _categoryBreakdown = new Dictionary<string, decimal>();
         private DateTime _startDate;
         private DateTime _endDate;
 

@@ -5,10 +5,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!-- Add any resource dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
-
-            <!-- Define global styles -->
             <Style TargetType="Button">
                 <Setter Property="Padding" Value="10,5"/>
                 <Setter Property="Margin" Value="5"/>
